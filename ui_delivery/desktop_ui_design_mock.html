@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMS Bridge UI 设计稿</title>
+  <style>
+    :root{--bg:#f3f6fb;--panel:#fff;--line:#d6e0ef;--text:#1f2a37;--sub:#5b6b7e;--pri:#3b82f6;--ok:#10b981}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:"Segoe UI","PingFang SC",sans-serif;color:var(--text)}
+    .page{max-width:1320px;margin:24px auto;padding:0 16px}
+    .title{font-size:30px;font-weight:700;margin:0 0 6px}
+    .sub{color:var(--sub);margin:0 0 16px}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .card h3{margin:0 0 4px;font-size:18px}
+    .card p{margin:0;color:var(--sub)}
+    .row{display:grid;grid-template-columns:120px 1fr;gap:10px;margin:12px 0}
+    .input{height:38px;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:#fff}
+    .btn{height:42px;border-radius:11px;border:0;cursor:pointer;font-weight:600}
+    .btn-pri{background:var(--pri);color:#fff}
+    .btn-ghost{background:#edf4ff;color:#1f2a37}
+    .btn-danger{background:#ef4444;color:#fff}
+    .status{display:flex;align-items:center;gap:8px;font-weight:700}
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--ok)}
+    .log{height:280px;margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:14px;background:#f8faff;color:#405067;font-family:Consolas,monospace}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .chip{padding:6px 10px;background:#edf4ff;border-radius:999px;font-size:12px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1 class="title">SMS Bridge 桌面端设计稿</h1>
+    <p class="sub">卡片式信息分层、浅深色主题共用设计令牌、响应式双列布局</p>
+
+    <div class="card" style="margin-bottom:14px">
+      <h3>服务状态</h3>
+      <p>系统托盘常驻，关闭窗口后自动隐藏</p>
+      <div class="status" style="margin-top:10px"><span class="dot"></span><span>服务运行中</span></div>
+      <div class="chips"><span class="chip">HTTP:9527</span><span class="chip">UDP:19527</span><span class="chip">AES-GCM</span><span class="chip">主题切换</span></div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>网络与安全配置</h3>
+        <p>支持 HTTP 定向 + UDP 广播接收</p>
+        <div class="row"><div>监听地址</div><input class="input" value="0.0.0.0" /></div>
+        <div class="row"><div>HTTP 端口</div><input class="input" value="9527" /></div>
+        <div class="row"><div>安全 Token</div><input class="input" value="******" /></div>
+        <div class="row"><div>AES 密钥</div><input class="input" value="******" /></div>
+        <div class="row"><div>UDP 端口</div><input class="input" value="19527" /></div>
+      </div>
+      <div class="card">
+        <h3>快捷操作</h3>
+        <p>高频操作聚焦，减少步骤跳转</p>
+        <button class="btn btn-ghost" style="width:100%;margin-top:12px">保存配置</button>
+        <button class="btn btn-pri" style="width:100%;margin-top:10px">启动服务</button>
+        <button class="btn btn-danger" style="width:100%;margin-top:10px">停止服务</button>
+        <button class="btn btn-ghost" style="width:100%;margin-top:10px">切换主题</button>
+        <button class="btn btn-ghost" style="width:100%;margin-top:10px">最小化到托盘</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3>运行日志</h3>
+      <p>实时反馈转发链路状态，便于定位异常</p>
+      <div class="log">2026-03-28 16:12:34 INFO 服务已启动: http://0.0.0.0:9527
+2026-03-28 16:12:34 INFO UDP 广播监听已启动: 0.0.0.0:19527
+2026-03-28 16:12:48 INFO UDP 消息处理成功: ('192.168.1.16', 50321)</div>
+    </div>
+  </div>
+</body>
+</html>

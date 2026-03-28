@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\Users\\Funing\\.gradle\\daemon\\9.0.0\\com.example.smsbridge.app-debug-31:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Funing\\.gradle\\daemon\\9.0.0\\com.example.smsbridge.app-main-33:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "com.example.smsbridge.app-debug-31:/layout_activity_main.xml.flat",
+        "source": "com.example.smsbridge.app-main-33:/layout/activity_main.xml"
+    }
+]

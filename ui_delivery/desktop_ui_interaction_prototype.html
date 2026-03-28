@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMS Bridge 交互原型</title>
+  <style>
+    :root{--bg:#f3f6fb;--panel:#fff;--line:#d6e0ef;--text:#1f2a37;--sub:#5b6b7e;--pri:#3b82f6}
+    body.dark{--bg:#0b1220;--panel:#111c33;--line:#243654;--text:#e5eeff;--sub:#94a7c6;--pri:#60a5fa}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI","PingFang SC",sans-serif;transition:.3s}
+    .wrap{max-width:1120px;margin:22px auto;padding:0 16px}
+    .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .title{font-size:26px;font-weight:700}
+    .btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:8px 14px;cursor:pointer}
+    .layout{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;transition:.25s}
+    .card:hover{transform:translateY(-2px)}
+    .row{margin:10px 0}
+    .label{font-size:13px;color:var(--sub);margin-bottom:6px}
+    .input{height:36px;width:100%;border:1px solid var(--line);border-radius:9px;padding:0 10px;background:transparent;color:var(--text)}
+    .cta{height:40px;width:100%;margin:8px 0;border:0;border-radius:10px;background:var(--pri);color:#fff;font-weight:600;cursor:pointer}
+    .state{padding:10px 12px;border-radius:10px;background:rgba(59,130,246,.12);font-size:14px;transition:.25s}
+    .log{height:220px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:Consolas,monospace;background:rgba(59,130,246,.06)}
+    .slide{animation:slide .25s ease}
+    @keyframes slide{from{opacity:.3;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    @media (max-width:980px){.layout{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="bar">
+      <div class="title">SMS Bridge 交互原型</div>
+      <button class="btn" onclick="toggleTheme()">切换浅/深色</button>
+    </div>
+    <div id="state" class="state slide">状态：未运行</div>
+    <div class="layout" style="margin-top:12px">
+      <div class="card slide">
+        <div class="row"><div class="label">监听地址</div><input class="input" value="0.0.0.0" /></div>
+        <div class="row"><div class="label">HTTP 端口</div><input class="input" value="9527" /></div>
+        <div class="row"><div class="label">AES 密钥</div><input class="input" type="password" value="******" /></div>
+        <div class="row"><div class="label">UDP 端口</div><input class="input" value="19527" /></div>
+      </div>
+      <div class="card slide">
+        <button class="cta" onclick="setState('状态：配置已保存')">保存配置</button>
+        <button class="cta" onclick="setState('状态：服务运行中')">启动服务</button>
+        <button class="cta" onclick="setState('状态：服务已停止')">停止服务</button>
+        <button class="cta" onclick="setState('状态：已隐藏到系统托盘')">隐藏到托盘</button>
+      </div>
+    </div>
+    <div class="card slide" style="margin-top:12px">
+      <div class="label">日志</div>
+      <div class="log" id="log"></div>
+    </div>
+  </div>
+  <script>
+    function setState(text){
+      const s=document.getElementById('state')
+      s.textContent=text
+      s.classList.remove('slide')
+      void s.offsetWidth
+      s.classList.add('slide')
+      const l=document.getElementById('log')
+      const now=new Date().toLocaleTimeString()
+      l.innerText += `${now} ${text}\n`
+      l.scrollTop=l.scrollHeight
+    }
+    function toggleTheme(){document.body.classList.toggle('dark')}
+    setState('状态：等待用户操作')
+  </script>
+</body>
+</html>

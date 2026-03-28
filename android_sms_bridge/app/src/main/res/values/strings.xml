@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SMS Bridge</string>
+    <string name="page_title">短信验证码转发</string>
+    <string name="page_subtitle">请先完成安全配置，再启用后台转发服务。</string>
+    <string name="save">保存配置</string>
+    <string name="start_service">启动服务</string>
+    <string name="stop_service">停止服务</string>
+    <string name="server_url">电脑接收地址（HTTP）</string>
+    <string name="token">安全令牌（可选）</string>
+    <string name="aes_key">AES 密钥（必填）</string>
+    <string name="udp_port">广播端口（UDP）</string>
+    <string name="send_mode">发送模式</string>
+    <string name="direct_mode">定向发送（填写地址）</string>
+    <string name="broadcast_mode">广播发送（无需地址）</string>
+    <string name="mode_hint_direct">当前为定向模式，系统会发送到指定电脑地址。</string>
+    <string name="mode_hint_broadcast">当前为广播模式，系统会向局域网广播端口发送。</string>
+    <string name="forwarding_on">服务状态：运行中</string>
+    <string name="forwarding_off">服务状态：未运行</string>
+    <string name="notif_channel_name">短信转发服务</string>
+    <string name="notif_channel_desc">用于保持短信转发后台运行</string>
+    <string name="notif_running_title">短信转发运行中</string>
+    <string name="notif_running_text">收到短信后将自动提取验证码并转发</string>
+</resources>
